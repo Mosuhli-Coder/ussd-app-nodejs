@@ -1,0 +1,32 @@
+version: 2.1
+orbs:
+  heroku: circleci/heroku@1.2.6
+workflows:
+  test-deploy:
+    jobs:
+      - build:
+      - heroku/deploy-via-git:
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:14.17.3
+    steps:
+      - checkout
+      - run:
+          name: install dependiceies
+          command: npm install
+  build:
+    steps:
+      - checkout
+      - run:
+          name: install dependiceies
+          command: npm install
+      - run:
+          name: build
+          command: npm run build
