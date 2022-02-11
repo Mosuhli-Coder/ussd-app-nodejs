@@ -5,8 +5,6 @@ workflows:
   deploy-ussd-nodejs-app:
     jobs:
       - heroku/deploy-via-git:
-          requires:
-            - build
           filters:
             branches:
               only: main
