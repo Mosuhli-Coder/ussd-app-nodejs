@@ -6,11 +6,12 @@ const app = express();
 const PORT = 8000
 
 // MODELS
-//const user = require('./models/user')
+const user = require('./models/user')
 
 
 // MONGOODB CONNECTION
-const database_url = 'mongodb://localhost:27017/ussd';
+//const database_url = 'mongodb+srv://tiger:tm19e97mt@cluster0.1b4v0.mongodb.net/test&ssl=true';
+const database_url = 'mongodb+srv://lereko:lereko@cluster0.1b4v0.mongodb.net/ussdb&ssl=true'
 mongoose.connect(database_url);
 const db = mongoose.connection;
 db.on('error', (err) => {

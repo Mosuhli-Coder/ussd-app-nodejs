@@ -2,16 +2,15 @@ version: 2.1
 orbs:
   heroku: circleci/heroku@1.2.6
 workflows:
-  test-deploy:
+  deploy-ussd-nodejs-app:
     jobs:
-      - build:
       - heroku/deploy-via-git:
           requires:
             - build
           filters:
             branches:
               only: main
-
+   
 jobs:
   test:
     docker:
@@ -22,6 +21,9 @@ jobs:
           name: install dependiceies
           command: npm install
   build:
+    docker:
+      - image: cimg/node:14.13.0
+    
     steps:
       - checkout
       - run:
